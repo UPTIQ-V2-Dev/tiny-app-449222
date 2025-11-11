@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# pnpm wrapper script that uses npm instead
+# This resolves permission issues with pnpm binary
+
+case "$1" in
+    "install")
+        npm install "${@:2}"
+        ;;
+    "build")
+        npm run build "${@:2}"
+        ;;
+    "dev")
+        npm run dev "${@:2}"
+        ;;
+    "preview")
+        npm run preview "${@:2}"
+        ;;
+    "run")
+        npm run "${@:2}"
+        ;;
+    "eslint")
+        npm run eslint "${@:2}"
+        ;;
+    "prettier")
+        npm run prettier "${@:2}"
+        ;;
+    "test")
+        npm run test "${@:2}"
+        ;;
+    "add")
+        npm install "${@:2}"
+        ;;
+    "remove")
+        npm uninstall "${@:2}"
+        ;;
+    *)
+        # For any other command, try to map it to npm equivalent
+        npm "$@"
+        ;;
+esac
